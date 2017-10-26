@@ -45,6 +45,11 @@ Mods
 
 * Now, you can touch the cookies, and feel them
 
+ToDo
+----
+
+* Date selector
+
 ...
 
 EditThisCookie Para pantallas táctiles!!! (Niños diciendo 'Siii!')
@@ -96,3 +101,7 @@ Mods
 
 * Ahora puedes tocar las cookies y sentirlas
 
+ToDo
+----
+
+* Selector de fecha
