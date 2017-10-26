@@ -1,4 +1,4 @@
-EditThisCookie
+EditThisCookie Touchscreen !!! (kids saying 'yeeeee!')
 ========================
 
 Description
