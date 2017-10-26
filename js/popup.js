@@ -529,7 +529,7 @@ function setEvents() {
 }
 
 function setCookieEvents() {
-	$(".hostOnly").click(function() {
+	$body.on("touchstart click", ".hostOnly", function() {
 		var cookie = $(this).closest(".cookie");
 		var checked = $(this).prop("checked");
 		if(!!checked)
@@ -538,7 +538,7 @@ function setCookieEvents() {
 			$(".domain", cookie).removeAttr("disabled");
 	});
 	
-	$(".session").click(function() {
+	$body.on("touchstart click", ".session", function() {
 		var cookie = $(this).closest(".cookie");
 		var checked = $(this).prop("checked");
 		if(!!checked)
@@ -547,7 +547,7 @@ function setCookieEvents() {
 			$(".expiration", cookie).removeAttr("disabled");
 	});
 	
-	$(".deleteOne").click(function() {
+	$body.on("touchstart click", ".deleteOne", function() {
 		var cookie = $(this).closest(".cookie");
 		var name 	= $(".name", cookie).val();
 		var storeId = $(".storeId", cookie).val();
@@ -568,7 +568,7 @@ function setCookieEvents() {
 		}
 		startAlertDialog(_getMessage("Alert_deleteCookie") + ": \"" + name + "\"?", okFunction, function(){})
 	});
-	$(".flagOne").click(function() {
+	$body.on("touchstart click", ".flagOne", function() {
 		var cookie = $(this).closest(".cookie");
 		var domain 	= $(".domain", 	cookie).val();
 		var name 	= $(".name", 	cookie).val();
@@ -581,7 +581,7 @@ function setCookieEvents() {
 		swithLayout("flag");
 	});
 	
-	$(".protectOne").click(function() {
+	$body.on("touchstart click", ".protectOne", function() {
 		var cookie = $(this).closest(".cookie");
 		var titleName = $("b", cookie.prev()).first();
 		var index = $(".index", cookie).val();
@@ -615,14 +615,14 @@ function setCookieEvents() {
 	$('.expiration').each(function(){
 		$(this).scroller('setDate', new Date($(this).val()), true);
 	});
-	$('#show').click(function(){
+	$body.on("touchstart click", '#show', function(){
 		var cookie = $(this).closest(".cookie");
 		scrollsave = $('body').scrollTop();
 		$("html").scrollTop(0);
 		$('.expiration', cookie).scroller('show'); 
 		return false;
 	});
-	$('#clear').click(function () {
+	$body.on("touchstart click", '#clear', function () {
 		var cookie = $(this).closest(".cookie");
 		$('.expiration', cookie).val('');
 		$('body').scrollTop(scrollsave);
