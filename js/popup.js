@@ -357,7 +357,7 @@ function importCookies() {
 }
 
 function setEvents() {
-	$body.on("click", "#submitButton:first-child", function(){
+	$body.on("touchstart click", "#submitButton:first-child", function(){
 		submit(currentTabID);
 	});
 	if(cookieList.length > 0) {
@@ -365,7 +365,7 @@ function setEvents() {
 	}
 	$("#submitFiltersButton").button();
 	
-	$body.on("click", "#submitFiltersDiv", function() {
+	$body.on("touchstart click", "#submitFiltersDiv", function() {
 		var domainChecked = $(".filterDomain:checked", $(this).parent()).val() != null;
 		var domain = $("#filterByDomain", $(this).parent()).text();
 		var nameChecked = $(".filterName:checked", $(this).parent()).val() != null;
@@ -403,7 +403,7 @@ function setEvents() {
 		return;
 	});
 	
-	$body.on("click", "#deleteAllButton", function() {
+	$body.on("touchstart click", "#deleteAllButton", function() {
 		if(cookieList.length == 0)
 			return false;
 		var okFunction = function() {
@@ -421,7 +421,7 @@ function setEvents() {
 	
 	if(preferences.showFlagAndDeleteAll) {
 		$("#flagAllButton").show();
-		$body.on("click", "#flagAllButton", function() {
+		$body.on("touchstart click", "#flagAllButton", function() {
 			if(cookieList.length == 0)
 				return false;
 			var okFunction = function() {
@@ -448,34 +448,34 @@ function setEvents() {
 	
 	//$("#copyButton").attr("title",preferences.copyCookiesType);
 
-	$body.on("click", "#refreshButton", function() {
+	$body.on("touchstart click", "#refreshButton", function() {
 		location.reload(true);
 	});
 	
-	$body.on("click", "#addCookieButton", function() {
+	$body.on("touchstart click", "#addCookieButton", function() {
 		newCookie = true;
 		pasteCookie = false;
 		swithLayout("new");
 	});
 	
-	$body.on("click", "#backToList", function() {
+	$body.on("touchstart click", "#backToList", function() {
 		newCookie = false;
 		pasteCookie = false;
 		swithLayout();
 	});
 	
-	$body.on("click", "#clearNew", function() {
+	$body.on("touchstart click", "#clearNew", function() {
 		clearNewCookieData();
 	});
 	
-	$body.on("click", "#optionsButton", function() {
+	$body.on("touchstart click", "#optionsButton", function() {
 		var urlToOpen = chrome.extension.getURL('options_main_page.html');
 		chrome.tabs.create({
 			url:urlToOpen
 		});
 	});
 	
-	$body.on("click", "#copyButton", function() {
+	$body.on("touchstart click", "#copyButton", function() {
 		copyToClipboard(cookiesToString.get(cookieList, url));
 		data.nCookiesExported += cookieList.length;
 		$("#copiedToast").fadeIn(function(){
@@ -489,13 +489,13 @@ function setEvents() {
 		});
 	});
 	
-	$body.on("click", "#pasteButton", function() {
+	$body.on("touchstart click", "#pasteButton", function() {
 		newCookie = false;
 		pasteCookie = true;
 		swithLayout("paste");
 	});
 	
-	$body.on("click", "#searchButton", function() {
+	$body.on("touchstart click", "#searchButton", function() {
 		$("#searchField").focus();
 		$("#searchField").fadeIn("normal",function(){$("#searchField").focus();});
 		$("#searchField").focus();
@@ -638,7 +638,7 @@ function startAlertDialog(title, ok_callback, cancel_callback) {
 			ok_callback();
 			return;
 		}
-		$body.on("click", "#alert_ok", function() {
+		$body.on("touchstart click", "#alert_ok", function() {
 			$("#alert_wrapper").hide();
 			ok_callback();
 		});
@@ -648,7 +648,7 @@ function startAlertDialog(title, ok_callback, cancel_callback) {
 	
 	if(cancel_callback != undefined) {
 		$("#alert_cancel").show();
-		$body.on("click", "#alert_cancel", function() {
+		$body.on("touchstart click", "#alert_cancel", function() {
 			$("#alert_wrapper").hide('fade');
 			cancel_callback();
 		});
