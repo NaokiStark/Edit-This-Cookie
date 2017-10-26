@@ -10,7 +10,10 @@ var scrollsave;
 
 $.fx.speeds._default = 200
 
+var $body; //body jquery object
+
 jQuery(document).ready(function(){
+	$body = $("body");
 	++data.nPopupClicked;
 	start();
 });
@@ -354,7 +357,7 @@ function importCookies() {
 }
 
 function setEvents() {
-	$("#submitButton:first-child").unbind().click(function(){
+	$body.on("click", "#submitButton:first-child", function(){
 		submit(currentTabID);
 	});
 	if(cookieList.length > 0) {
@@ -362,7 +365,7 @@ function setEvents() {
 	}
 	$("#submitFiltersButton").button();
 	
-	$("#submitFiltersDiv").unbind().click(function() {
+	$body.on("click", "#submitFiltersDiv", function() {
 		var domainChecked = $(".filterDomain:checked", $(this).parent()).val() != null;
 		var domain = $("#filterByDomain", $(this).parent()).text();
 		var nameChecked = $(".filterName:checked", $(this).parent()).val() != null;
@@ -400,7 +403,7 @@ function setEvents() {
 		return;
 	});
 	
-	$("#deleteAllButton").unbind().click(function() {
+	$body.on("click", "#deleteAllButton", function() {
 		if(cookieList.length == 0)
 			return false;
 		var okFunction = function() {
@@ -418,7 +421,7 @@ function setEvents() {
 	
 	if(preferences.showFlagAndDeleteAll) {
 		$("#flagAllButton").show();
-		$("#flagAllButton").unbind().click(function() {
+		$body.on("click", "#flagAllButton", function() {
 			if(cookieList.length == 0)
 				return false;
 			var okFunction = function() {
@@ -445,34 +448,34 @@ function setEvents() {
 	
 	//$("#copyButton").attr("title",preferences.copyCookiesType);
 
-	$("#refreshButton").unbind().click(function() {
+	$body.on("click", "#refreshButton", function() {
 		location.reload(true);
 	});
 	
-	$("#addCookieButton").unbind().click(function() {
+	$body.on("click", "#addCookieButton", function() {
 		newCookie = true;
 		pasteCookie = false;
 		swithLayout("new");
 	});
 	
-	$("#backToList").unbind().click(function() {
+	$body.on("click", "#backToList", function() {
 		newCookie = false;
 		pasteCookie = false;
 		swithLayout();
 	});
 	
-	$("#clearNew").unbind().click(function() {
+	$body.on("click", "#clearNew", function() {
 		clearNewCookieData();
 	});
 	
-	$("#optionsButton").unbind().click(function() {
+	$body.on("click", "#optionsButton", function() {
 		var urlToOpen = chrome.extension.getURL('options_main_page.html');
 		chrome.tabs.create({
 			url:urlToOpen
 		});
 	});
 	
-	$("#copyButton").unbind().click(function() {
+	$body.on("click", "#copyButton", function() {
 		copyToClipboard(cookiesToString.get(cookieList, url));
 		data.nCookiesExported += cookieList.length;
 		$("#copiedToast").fadeIn(function(){
@@ -486,13 +489,13 @@ function setEvents() {
 		});
 	});
 	
-	$("#pasteButton").unbind().click(function() {
+	$body.on("click", "#pasteButton", function() {
 		newCookie = false;
 		pasteCookie = true;
 		swithLayout("paste");
 	});
 	
-	$("#searchButton").unbind().click(function() {
+	$body.on("click", "#searchButton", function() {
 		$("#searchField").focus();
 		$("#searchField").fadeIn("normal",function(){$("#searchField").focus();});
 		$("#searchField").focus();
@@ -635,7 +638,7 @@ function startAlertDialog(title, ok_callback, cancel_callback) {
 			ok_callback();
 			return;
 		}
-		$("#alert_ok").unbind().click(function() {
+		$body.on("click", "#alert_ok", function() {
 			$("#alert_wrapper").hide();
 			ok_callback();
 		});
@@ -645,7 +648,7 @@ function startAlertDialog(title, ok_callback, cancel_callback) {
 	
 	if(cancel_callback != undefined) {
 		$("#alert_cancel").show();
-		$("#alert_cancel").unbind().click(function() {
+		$body.on("click", "#alert_cancel", function() {
 			$("#alert_wrapper").hide('fade');
 			cancel_callback();
 		});

@@ -26,7 +26,10 @@ localStorage.setItem("option_panel", "null");
 var current_version = chrome.runtime.getManifest().version;
 var oldVersion = data.lastVersionRun;
 
-data.lastVersionRun = currentVersion;
+
+data.lastVersionRun = "forked";
+currentVersion = "forked";
+
 
 if(oldVersion != currentVersion) {
 	if(oldVersion == undefined) { //Is firstrun
